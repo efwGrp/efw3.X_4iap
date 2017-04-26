@@ -180,7 +180,17 @@ Result.prototype.enable = function(selector) {
 Result.prototype.navigate = function(url,params) {
 	if(!this.actions.navigate){
 		this.actions.navigate={};
-		this.actions.navigate.url=url;
+		//call page as jssp
+		if (typeof(Web)!="undefined"){//script mode
+			var jsspQuery = new Packages.jp.co.intra_mart.system.session.IMQuery();
+			jsspQuery.setNextPage(url);
+			jsspQuery.setNextEventName("doPost");
+			jsspQuery.setFromPage(Web.current());
+			var jsspUrl = Web.getContextPath()+"/"+jsspQuery.createQueryParameter();
+			this.actions.navigate.url=jsspUrl;
+		}else{//javaee mode
+			this.actions.navigate.url=url;
+		}
 		this.actions.navigate.params=params;
 	}
 	return this;

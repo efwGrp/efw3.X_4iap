@@ -21,7 +21,7 @@ public class PdfManager {
 	/**
 	 * webからpdf変換するため、WEBサーバのローカルからアプリを接続する時のURL
 	 */
-	private static String baseurl="http://localhost:8080/efw/";
+	private static String baseurl="http://localhost:8080/imart/";
 	
     /**
      * PDF変換に関わる設定情報を取得する

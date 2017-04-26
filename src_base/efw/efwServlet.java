@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.intra_mart.common.aid.jsdk.javax.servlet.http.HTTPContextManager;
 import efw.file.FileManager;
 import efw.format.FormatManager;
 import efw.log.LogManager;
@@ -94,10 +95,18 @@ public final class efwServlet extends HttpServlet {
      * @return　スレッドローカルに格納するリクエストオブジェクト。
      */
     public static HttpServletRequest getRequest(){
-    	return efwServlet.request.get();
+    	if (null!=efwServlet.request.get()){
+    		return efwServlet.request.get();
+    	}else{
+        	return HTTPContextManager.getInstance().getCurrentContext().getRequest();//スクリプト呼出しの場合、これを利用する
+    	}
     }
     public static HttpServletResponse getResponse(){
-    	return efwServlet.response.get();
+    	if (null!=efwServlet.response.get()){
+    		return efwServlet.response.get();
+    	}else{
+        	return HTTPContextManager.getInstance().getCurrentContext().getResponse();//スクリプト呼出しの場合、これを利用する
+    	}
     }
     /**
      * サーブレットの起動と同時に、
