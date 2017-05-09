@@ -1,4 +1,4 @@
-/**** efw3.X Copyright 2016 efwGrp ****/
+/**** efw3.X Copyright 2017 efwGrp ****/
 /**
  * efw framework server library
  * @author Chang Kejun
@@ -71,7 +71,8 @@ loadResource("efw/resource/server/efw.server.messages.js");
 loadResource("efw/resource/server/efw.server.js");
 loadResource("efw/resource/server/efw.server.format.js");
 loadResource("efw/resource/server/efw.server.properties.js");
-_isdebug=EfwServerProperties.prototype.get("efw.debug",false);
+Packages.efw.properties.PropertiesManager.init();//because script mode is loaded earlier than javaee mode.
+_isdebug=EfwServerProperties.prototype.get("efw.isdebug",false);
 loadResource("efw/resource/server/efw.server.session.js");
 loadResource("efw/resource/server/efw.server.db.js");
 loadResource("efw/resource/server/efw.server.event.js");
@@ -84,7 +85,7 @@ loadResource("efw/resource/server/efw.server.result.js");
 loadResource("efw/resource/server/efw.server.excel.js");
 loadResource("efw/resource/server/efw.server.cookie.js");
 loadResource("efw/resource/server/efw.server.barcode.js");
-loadResource("efw/resource/server/efw.server.debug.js");
+//loadResource("efw/resource/server/efw.server.debug.js"); //Cannt customize object in script mode because imart products.
 loadResource("efw/resource/server/base64.min.js");
 
 /**
@@ -234,7 +235,9 @@ function executeElFinderTag(attributes,innerContent){
 	ret+='<div id="'+id+'" '+temp+'></div>';
 	return ret;
 }
-loadResource("elfinder/resource/server/init.js");
+try{
+	loadResource("elfinder/resource/server/init.js");
+}catch(e){}
 /**
  * Signature Tag Define
  */
@@ -402,3 +405,8 @@ function doPost(req) {
 		return result;
 	}
 };
+///////////////////////////////////////////////////////////////////////////////
+/**
+ * Set global into procedure
+ */
+Procedure.define("efwGlobal",this);
