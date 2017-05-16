@@ -82,6 +82,7 @@ loadResource("efw/resource/server/efw.server.pdf.js");
 loadResource("efw/resource/server/efw.server.mail.js");
 loadResource("efw/resource/server/efw.server.record.js");
 loadResource("efw/resource/server/efw.server.result.js");
+loadResource("efw/resource/server/efw.server.batch.js");
 loadResource("efw/resource/server/efw.server.excel.js");
 loadResource("efw/resource/server/efw.server.cookie.js");
 loadResource("efw/resource/server/efw.server.barcode.js");
