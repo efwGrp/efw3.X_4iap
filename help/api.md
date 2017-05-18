@@ -9,7 +9,6 @@
 
 <h2>Event JS</h2>
 <li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_event.md">Event Programming</a></li>
-<li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_global.md">About Global Event</a></li>
 
 
 <h2>Outside SQL</h2>
