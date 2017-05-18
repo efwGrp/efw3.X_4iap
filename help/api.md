@@ -1,7 +1,7 @@
 <H1>API</H1>
 
 <h2>JSP</h2>
-<li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_efw_tag.md">Efw Tags(For JavaEE)</a>&nbsp;&nbsp;&nbsp;<a href="api_efw_tag_script.md">Efw Tags For Script</a></li>
+<li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_efw_tag.md">Efw Tags(For JavaEE)</a>&nbsp;&nbsp;&nbsp;<a href="api_efw_tag_script.md">Efw Tags(For Script)</a></li>
 <li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_efw_function.md">Efw Function</a></li>
 <li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_data_format.md">data-format Attribute</a></li>
 <li><a href="https://github.com/efwGrp/efw3.X/blob/master/help/api_data_shortcut.md">data-shortcut Attribute</a></li>
