@@ -1,9 +1,9 @@
 /**** efw3.X Copyright 2016 efwGrp ****/
 #loading{
-	z-index:100;
-	background-image:url(../efw/images/loading.gif);
-	background-position:center center;
-	background-repeat:no-repeat;
+	z-index:100!important;
+	background-image:url(../efw/images/loading.gif)!important;
+	background-position:center center!important;
+	background-repeat:no-repeat!important;
 }
 
 /**
@@ -13,10 +13,10 @@ data-format
 **/
 
 .efw_input_error{
-	background-color:pink;
+	background-color:pink!important;
 }
 .efw_input_focus{
-	background-color:lightcyan;
+	background-color:lightcyan!important;
 }
 .ui-dialog{
 	position:fixed!important;

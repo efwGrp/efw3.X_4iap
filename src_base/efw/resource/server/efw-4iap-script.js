@@ -111,6 +111,8 @@ var barcode =new EfwServerBarcode();
  * Client Tag Define
  */
 Imart.defineType("efwClient",executeClientTag);
+Imart.defineType("efwclient",executeClientTag);
+Imart.defineType("EFWCLIENT",executeClientTag);
 function executeClientTag(attributes,innerContent){
 
 	var jsspQuery = new Packages.jp.co.intra_mart.system.session.IMQuery();
@@ -121,6 +123,7 @@ function executeClientTag(attributes,innerContent){
 	url=url.replace("jssps","jssprpc");
 
 	var ret="";
+	ret +='<link type="text/css" rel="stylesheet" href="./efw/efw.css">';
 	ret +='<script type="text/javascript" charset="UTF-8" src="./efw/js.cookie.min.js"></script>';
 	ret +='<script type="text/javascript" charset="UTF-8" src="./efw/efw.client.messages.js"></script>';
 	ret +='<script type="text/javascript" charset="UTF-8" src="./efw/efw.client.format.js"></script>';
@@ -154,6 +157,8 @@ function executeClientTag(attributes,innerContent){
  * efwChart Tag Define
  */
 Imart.defineType("efwChart",executeEfwChartTag);
+Imart.defineType("efwchart",executeEfwChartTag);
+Imart.defineType("EFWCHART",executeEfwChartTag);
 function executeEfwChartTag(attributes,innerContent){
 
 	var id="chart";
@@ -188,7 +193,11 @@ function executeEfwChartTag(attributes,innerContent){
 /**
  * elFinder Tag Define
  */
-Imart.defineType("elFinder",executeElFinderTag);
+Imart.defineType("efwElFinder",executeElFinderTag);
+Imart.defineType("efwElfinder",executeElFinderTag);
+Imart.defineType("efwelfinder",executeElFinderTag);
+Imart.defineType("EFWELFINDER",executeElFinderTag);
+
 function executeElFinderTag(attributes,innerContent){
 
 	var id="elFinder";
@@ -202,12 +211,24 @@ function executeElFinderTag(attributes,innerContent){
 	if(attributes.id){
 		id=attributes.id;
 	}
+	if(attributes.home){
+		home=attributes.home;
+	}
+	if(attributes.lang){
+		lang=attributes.lang;
+	}
 	if(attributes.height){
 		height=attributes.height;
 	}
 	if(attributes.width){
 		width=attributes.width;
 	}
+	if(attributes.readonly){
+		if ((""+attributes.readonly).toLowerCase()=="true"){
+			readonly=true;
+		}
+	}
+	
 	var ret="";
 	ret+='<link type="text/css" rel="stylesheet" href="elfinder/css/elfinder.min.css">';
 	ret+='<link type="text/css" rel="stylesheet" href="elfinder/css/theme.css">';
@@ -244,6 +265,8 @@ try{
  * Signature Tag Define
  */
 Imart.defineType("efwSignature",executeSignatureTag);
+Imart.defineType("efwsignature",executeSignatureTag);
+Imart.defineType("EFWSIGNATURE",executeSignatureTag);
 function executeSignatureTag(attributes,innerContent){
 	var id="signature";
 	var height="200";
@@ -284,7 +307,11 @@ function executeSignatureTag(attributes,innerContent){
 /**
  * ckEditor Tag Define
  */
-Imart.defineType("ckEditor",executeCkEditorTag);
+Imart.defineType("efwCKEditor",executeCkEditorTag);
+Imart.defineType("efwCKeditor",executeCkEditorTag);
+Imart.defineType("efwCkeditor",executeCkEditorTag);
+Imart.defineType("efwckeditor",executeCkEditorTag);
+Imart.defineType("EFWCKEDITOR",executeCkEditorTag);
 function executeCkEditorTag(attributes,innerContent){
 	
 	var id="ckeditor";
@@ -296,11 +323,19 @@ function executeCkEditorTag(attributes,innerContent){
 	if(attributes.id){
 		id=attributes.id;
 	}
+	if(attributes.lang){
+		lang=attributes.lang;
+	}
 	if(attributes.height){
 		height=attributes.height;
 	}
 	if(attributes.width){
 		width=attributes.width;
+	}
+	if(attributes.readonly){
+		if ((""+attributes.readonly).toLowerCase()=="true"){
+			readonly=true;
+		}
 	}
 	if(attributes.pattern){
 		pattern=attributes.pattern;

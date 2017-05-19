@@ -23,6 +23,7 @@ public class Client extends SimpleTagSupport implements DynamicAttributes {
 	public void doTag() throws JspException, IOException {
 		super.doTag();
 		JspWriter out = this.getJspContext().getOut();
+		out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"./efw/efw.css\">");
 		out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"./efw/js.cookie.min.js\"></script>");
 		out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"./efw/efw.client.messages.js\"></script>");
 		out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"./efw/efw.client.format.js\"></script>");
