@@ -106,7 +106,7 @@ public class efwBatch {
 	        String password = PropertiesManager.getProperty("password","");
 	        handler = new PasswordSecurityHTTPActionEventFilterHandler(handler, tenantId, userCd, password);
 	        // URL を取得
-	        HTTPActionEventURL httpActionEventURL=WebApplicationHTTPActionEventHandler.getURL(handler, PropertiesManager.getProperty("hostPort","http://localhost:8080")+"/imart/HTTPActionEventListener");
+	        HTTPActionEventURL httpActionEventURL=WebApplicationHTTPActionEventHandler.getURL(handler, PropertiesManager.getProperty("hostPort","http://localhost:8080")+"/HTTPActionEventListener");
 	        //cookies を取得
 			List<String> cookieList = httpActionEventURL.getConnection().getHeaderFields().get("Set-Cookie");
 			String strCookie = "";
