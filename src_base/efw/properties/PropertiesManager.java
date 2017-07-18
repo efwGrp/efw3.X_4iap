@@ -43,11 +43,7 @@ public final class PropertiesManager {
     /**
      * 「efw.brms.import」の定数。
      */
-    public static final String EFW_BRMS_IMPORT="efw.brms.import";    
-    /**
-	 * 「efw.brms.codetype」の定数。
-	 */
-    public static final String EFW_BRMS_CODETYPE="efw.brms.codetype";    
+    public static final String EFW_BRMS_IMPORT="efw.brms.import";
     /**
      * イベントJavaScriptファイルの格納パスのプロパティキー。
      * 「efw.event.folder」の定数。
@@ -149,6 +145,11 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_PDF_PDFTK ="efw.pdf.pdftk";
 	/**
+	 * ExcelをPDFに変換するためのOpenOfficeのポート。
+	 * 「efw.openoffice.port」の定数。
+	 */
+	public static final String EFW_OPENOFFICE_PORT = "efw.openoffice.port";  
+	/**
 	 * ログインチェック不要なURLの正規表現文字列
 	 */
 	public static final String EFW_OUTOFLOGIN_URL_PATTERN="efw.outoflogin.url.pattern";
@@ -159,7 +160,7 @@ public final class PropertiesManager {
 	/**
 	 * プロパティ値を格納するプロパティオブジェクト。
 	 */
-    private static Properties prop = new Properties();
+	public static Properties prop = new Properties();
     /**
      * フレームワークに利用するプロパティファイルから、プロパティ値をプロパティオブジェクトにロードする。
      * @throws IOException　プロパティファイルの読み取りエラー。
