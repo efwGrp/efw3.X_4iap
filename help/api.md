@@ -30,7 +30,7 @@
 <tr><td>event</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/event.fire.md">fire</a></td></tr>
 <tr><td>db</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/db.select.md">select</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/db.change.md">change</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/db.master.md">master</a></td></tr>
 <tr><td>mail</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/mail.send.md">send</a></td></tr>
-<tr><td>pdf</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/pdf.create.md">create</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/pdf.merge.md">merge</a></td></tr>
+<tr><td>pdf</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/pdf.create.md">create</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/pdf.merge.md">merge</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/pdf.convert.md">convert</a></td></tr>
 <tr><td>properties</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/properties.get.md">get</a></td></tr>
 <tr><td>session</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/session.get.md">get</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/session.set.md">set</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/session.create.md">create</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/session.invalidate.md">invalidate</a></td></tr>
 <tr><td>cookie</td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/cookie.get.md">get</a></td><td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/cookie.set.md">set</a></td></tr>
@@ -47,27 +47,43 @@
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.new.md">new</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.save.md">save</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.close.md">close</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getSheetNames.md">getSheetNames</a></td>
 </tr>
 <tr><td></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.createSheet.md">createSheet</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.removeSheet.md">removeSheet</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.setSheetOrder.md">setSheetOrder</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.setActiveSheet.md">setActiveSheet</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.setPrintArea.md">setPrintArea</a></td>
+</tr>
+<tr><td></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.addRow.md">addRow</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.delRow.md">delRow</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.showRow.md">showRow</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.hideRow.md">hideRow</a></td>
+</tr>
+<tr><td></td>
+<td><a>addCol</a></td>
+<td><a>delCol</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.showCol.md">showCol</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.hideCol.md">hideCol</a></td>
 </tr>
 <tr><td></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.setCell.md">setCell</a></td>
-<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.encircle.md">encircle</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.setLink.md">setLink</a></td>
 </tr>
 <tr><td></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getArray.md">getArray</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getSingle.md">getSingle</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getValue.md">getValue</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getMaxRow.md">getMaxRow</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getMaxCol.md">getMaxCol</a></td>
 </tr>
 <tr><td></td>
-<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getMaxCol.md">getMaxCol</a></td>
 <td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.isEncircled.md">isEncircled</a></td>
-<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.getSheetNames.md">getSheetNames</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.encircle.md">encircle</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.addShape.md">addShape</a></td>
+<td><a href="https://github.com/efwGrp/efw3.X/blob/master/help/excel.addShapeInRange.md">addShapeInRange</a></td>
 </tr>
 
 <tr><td>Record</td>
