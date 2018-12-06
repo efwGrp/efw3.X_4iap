@@ -1,13 +1,11 @@
 <H1>efw3.X_4iap</H1>
 <a href="help/step_by_step_web.md">Step by Step(Web)</a><br>
 <a href="help/step_by_step_batch.md">Step by Step(Batch)</a><br>
-<a href="help/hello_world_web.md">Quick Start(Web TODO)</a><br>
-<a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a><br>
-<a href="help/api.md">API</a><br>
-<a href="help/properties_web.md">Properties(Web TODO)</a><br>
-<a href="help/properties_batch.md">Properties(Batch TODO)</a><br>
-<a href="help/files_list_web.md">Files List(Web JavaEE)</a>&nbsp;&nbsp;&nbsp;<a href="help/files_list_web.md">Files List(Web Script)</a><br>
-<a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
+<a href="https://github.com/efwGrp/efw3.X">Efw3.X API</a><br>
+<H3>The Difference of Script Development.</H3>
+<a href="help/api_efw_tag_script.md">Efw Tags(Web Script)</a><br>
+<a href="help/files_list_web.md">Files List(Web Script)</a><br>
+
 
 <h3>Function Diagram</h3>
 <img src="./help/efw-4iap.png"><br>
