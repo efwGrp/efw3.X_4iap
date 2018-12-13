@@ -6,18 +6,13 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import jp.co.intra_mart.foundation.mail.MailSenderException;
+import jp.co.intra_mart.foundation.mail.javamail.JavaMailSender;
+import jp.co.intra_mart.foundation.mail.javamail.StandardMail;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,7 +20,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import efw.efwException;
-import efw.properties.PropertiesManager;
 
 
 /**
@@ -34,39 +28,6 @@ import efw.properties.PropertiesManager;
  *
  */
 public final class MailManager {
-	/**
-	 * ネーミング操作の開始コンテキストの名称。
-	 * 「java:comp/env」に固定。
-	 */
-	private static final String JAVA_INITCONTEXT_NAME="java:comp/env";
-	/**
-	 * フレームワークに利用するjavaメールセッションの名称。
-	 * <br>efw.propertiesのefw.mail.resourceで設定、
-	 * デフォルトは「mail/efw」。
-	 */
-    private static String mailResourceName="mail/efw";
-    /**
-	 * フレームワークに利用するjavaメールプロトコル。
-	 * <br>propertiesのefw.mail.protocolで設定、
-	 * デフォルトは「smtp」。
-	 */
-    private static String mailProtocol="smtp";
-    /**
-	 * フレームワークに利用するjavaメールポート
-	 * <br>propertiesのefw.mail.portで設定、
-	 * デフォルトは「25」。
-	 */
-    private static int mailPort=25;
-    /**
-	 * フレームワークに利用するjavaメールユーザ検証
-	 * <br>propertiesのefw.mail.authで設定、
-	 * デフォルトは「true」。
-	 */
-    private static boolean mailAuth=true;
-    /**
-     * javaメールセッション。
-     */
-    private static Session mailSession;
 	/**
 	 * MailテンプレートXMLファイルの格納パス。
 	 * サーブレットから渡される。
@@ -86,43 +47,8 @@ public final class MailManager {
 	public synchronized static void init(String mailFolder,boolean isDebug) throws efwException{
 		MailManager.mailFolder=mailFolder;
 		MailManager.isDebug=isDebug;
+	}
 
-		try {
-			mailResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_MAIL_RESOURCE,mailResourceName);
-	        if(mailResourceName.indexOf("java:")>-1){//if the mail resouce begins from [java:], it is full jndi name.
-	        	mailSession = (Session) new InitialContext().lookup(mailResourceName);
-	        }else{//or it begins by [java:comp/env/]
-	        	mailSession = (Session) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+mailResourceName);
-	        }
-		} catch (NamingException e) {
-			e.printStackTrace();
-    		throw new efwException(efwException.DataSourceInitFailedException,mailResourceName);
-		}
-	}
-	public static synchronized void initFromBatch(String mailFolder) throws efwException{
-		MailManager.mailFolder=mailFolder;
-    	String username=PropertiesManager.EFW_MAIL_USERNAME;
-    	String password=PropertiesManager.EFW_MAIL_PASSWORD;
-    	String from=PropertiesManager.EFW_MAIL_FROM;
-    	String protocol=PropertiesManager.EFW_MAIL_TRANSPORT_PROTOCOL;
-    	String host=PropertiesManager.EFW_MAIL_SMTP_HOST;
-    	String auth=PropertiesManager.EFW_MAIL_SMTP_AUTH;
-    	String port=PropertiesManager.EFW_MAIL_SMTP_PORT;
-		Properties prop = new Properties();
-		String usernameValue=PropertiesManager.getProperty(username, "");
-		String passwordValue=PropertiesManager.getProperty(password, "");
-		String fromValue=PropertiesManager.getProperty(from, "");
-		String hostValue=PropertiesManager.getProperty(host, "");
-		String protocolValue=PropertiesManager.getProperty(protocol, mailProtocol);
-		boolean authValue=PropertiesManager.getBooleanProperty(auth, mailAuth);
-		int portValue=PropertiesManager.getIntProperty(port, mailPort);
-		prop.put("mail.from", fromValue);
-		prop.put("mail.smtp.host",hostValue);
-		prop.put("mail.transport.protocol",protocolValue);
-		prop.put("mail.smtp.auth",authValue);
-		prop.put("mail.smtp.port",portValue);
-		mailSession=Session.getInstance(prop,new MailAuthenticator(usernameValue,passwordValue));
-	}
 	/**
 	 * メールを送信
 	 * @param mailId
@@ -131,43 +57,46 @@ public final class MailManager {
 	 */
 	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException{
 		Mail mail=get(groupId,mailId);
-		MimeMessage message = new MimeMessage(mailSession);
+		StandardMail message= new StandardMail();
 		try {
 			String to=mail.getTo(params);
 			if (to!=null&&!"".equals(to)){
 				String[] ary=to.split(";");
 				for(int i=0;i<ary.length;i++){
-					if(!"".equals(ary[i]))message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(ary[i]));
+					if(!"".equals(ary[i]))message.addTo(ary[i]);
+						//message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(ary[i]));
 				}
 			}
 			String cc=mail.getCc(params);
 			if (cc!=null&&!"".equals(cc)){
 				String[] ary=to.split(";");
 				for(int i=0;i<ary.length;i++){
-					if(!"".equals(ary[i]))message.addRecipient(MimeMessage.RecipientType.CC, new InternetAddress(ary[i]));
+					if(!"".equals(ary[i]))message.addCc(ary[i]);
+						//message.addRecipient(MimeMessage.RecipientType.CC, new InternetAddress(ary[i]));
 				}
 			}
 			String bcc=mail.getBcc(params);
 			if (bcc!=null&&!"".equals(bcc)){
 				String[] ary=to.split(";");
 				for(int i=0;i<ary.length;i++){
-					if(!"".equals(ary[i]))message.addRecipient(MimeMessage.RecipientType.BCC, new InternetAddress(ary[i]));
+					if(!"".equals(ary[i]))message.addBcc(ary[i]);
+						//message.addRecipient(MimeMessage.RecipientType.BCC, new InternetAddress(ary[i]));
 				}
 			}
 			String subject=mail.getSubject(params);
 			if (subject!=null&&!"".equals(subject)){
-				message.setSubject(subject,"UTF-8");
+				message.setSubject(subject);
+				//message.setSubject(subject,"UTF-8");
 			}
 			String body=mail.getBody(params);
 			if (body!=null&&!"".equals(body)){
-				message.setContent(body,"text/plain;charset=UTF-8");//text/html;charset=UTF-8
+				message.setText(body);
+				//message.setContent(body,"text/plain;charset=UTF-8");//text/html;charset=UTF-8
 			}
-			message.setFrom();
-			Transport.send(message);
-		} catch (AddressException e) {
-			e.printStackTrace();
-    		throw new efwException(efwException.MailSendFailedExcepton,e.getMessage());
-		} catch (MessagingException e) {
+			//message.setFrom();
+			//Transport.send(message);
+			(new JavaMailSender(message)).send();
+		} catch (MailSenderException e) {
 			e.printStackTrace();
     		throw new efwException(efwException.MailSendFailedExcepton,e.getMessage());
 		}
